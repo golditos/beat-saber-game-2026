@@ -48,7 +48,7 @@ namespace Ath.Beat.Audio
             if (!isPlaying || !audioSource.isPlaying) return;
             double elapsed = AudioSettings.dspTime - songStartDspTime;
             if (elapsed < 0) return;
-            int beat = Mathf.FloorToInt((float)elapsed / sampleSize);
+            int beat = Mathf.FloorToInt((float)(elapsed / SecondsPerBeat));
 
             if (beat != lastBeat)
             {

@@ -34,19 +34,6 @@ namespace Ath.Beat.Gameplay
             if (transform.position.z < -1.5f)
                 Miss();
         }
-
-        private void OnTriggerEnter(Collider other)
-        {
-            if (!active || WasHit) return;
-            var saber = other.GetComponent<SaberController>();
-            if (saber == null) return;
-            bool correctSaber = blockType == BlockType.Left && saber.IsLeftSaber
-                                || blockType == BlockType.Right && !saber.IsLeftSaber
-                                || blockType == BlockType.Bomb;
-            if (!correctSaber) return;
-            RegisterHit();
-        }
-        
         public void RegisterHit()
         {
             if (!active || WasHit) return;
