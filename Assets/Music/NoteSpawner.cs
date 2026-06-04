@@ -102,8 +102,10 @@ namespace Ath.Beat.Gameplay
             if (bloc == null) return;
             float x = (lane - 1.5f) * laneWidth;
             float y = baseY + row * rowHeight;
+			float secondsUntilHit = (float)(hitDspTime - AudioSettings.dspTime); 
+			float playerZ = Camera.main.transform.position.z; 
+			float z = playerZ + secondsUntilHit * noteSpeed;
             bloc.transform.position = new Vector3(x, y, 0f);
-            float playerZ = Camera.main.transform.position.z;
             bloc.Init(type, hitDspTime, noteSpeed, hitZ: playerZ);
         }
     }
