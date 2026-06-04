@@ -21,11 +21,11 @@ public class HitZone : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("HITZONE TOCADA por: " + other.name + " | Tag: " + other.tag);
+        //Debug.Log("HITZONE TOCADA por: " + other.name + " | Tag: " + other.tag);
 
         if (!IsWeapon(other))
         {
-            Debug.Log("No es Weapon: " + other.name);
+            //Debug.Log("No es Weapon: " + other.name);
             return;
         }
 
@@ -36,13 +36,13 @@ public class HitZone : MonoBehaviour
 
         if (spiderHitReceiver == null)
         {
-            Debug.LogError("No hay SpiderHitReceiver asignado en " + gameObject.name);
+            //Debug.LogError("No hay SpiderHitReceiver asignado en " + gameObject.name);
             return;
         }
 
         Vector3 hitPoint = other.ClosestPoint(transform.position);
 
-        Debug.Log("GOLPE VÁLIDO: " + hitType);
+        //Debug.Log("GOLPE VÁLIDO: " + hitType);
 
         spiderHitReceiver.ReceiveHit(hitType, hitPoint, hitParticles);
     }

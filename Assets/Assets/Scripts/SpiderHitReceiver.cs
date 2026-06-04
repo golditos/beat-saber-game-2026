@@ -71,13 +71,13 @@ public class SpiderHitReceiver : MonoBehaviour
         currentScore += points;
         currentCombo++;
 
-        Debug.Log($"Hit correcto: {feedbackText} | +{points} | Score total: {currentScore}");
+        //Debug.Log($"Hit correcto: {feedbackText} | +{points} | Score total: {currentScore}");
 
         ScoreUI activeScoreUI = GetActiveScoreUI();
 
         if (activeScoreUI != null)
         {
-            Debug.Log("Enviando feedback a ScoreUI ACTIVO: " + feedbackText + " +" + points);
+            //Debug.Log("Enviando feedback a ScoreUI ACTIVO: " + feedbackText + " +" + points);
 
             activeScoreUI.UpdateScore(currentScore);
             activeScoreUI.UpdateCombo(currentCombo);

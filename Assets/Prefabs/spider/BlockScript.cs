@@ -33,18 +33,6 @@ namespace Ath.Beat.Gameplay
             transform.Translate(0f, 0f, -speed * Time.deltaTime, Space.World);
         }
 
-        public void OnCollisionEnter(Collision other)
-        {
-            if (other.gameObject.tag != "Weapon") return;
-            if (transform.position.z < -1.5f)
-                Miss();
-            else
-            {
-                WasHit = true;
-                RegisterHit();
-            }
-        }
-
         public void RegisterHit()
         {
             if (!active || WasHit) return;

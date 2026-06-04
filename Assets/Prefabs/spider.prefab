@@ -222,7 +222,6 @@ GameObject:
   - component: {fileID: 4833035952526939158}
   - component: {fileID: 283664304087481223}
   - component: {fileID: 5832515414353317938}
-  - component: {fileID: 8515868032568440346}
   - component: {fileID: 6084644125516213839}
   m_Layer: 0
   m_Name: spider
@@ -287,21 +286,6 @@ MonoBehaviour:
   headshotPoints: 300
   legPoints: 25
   hitCooldown: 0.1
---- !u!114 &8515868032568440346
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4858299727181061971}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 10ef47a5c35df9b4d9efa56749df4d18, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  clip: {fileID: 7400000, guid: c0eca4f5feced6d4880dd97100e58b29, type: 2}
-  anim: {fileID: 0}
-  clipName: Walk
 --- !u!54 &6084644125516213839
 Rigidbody:
   m_ObjectHideFlags: 0
