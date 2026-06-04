@@ -25,6 +25,7 @@ public class SpiderHitReceiver : MonoBehaviour
 
     public void ReceiveHit(HitType hitType, Vector3 hitPoint, ParticleSystem particlesPrefab)
     {
+        Debug.Log("ReceiveHit llamado: " + hitType);
         if (Time.time - lastHitTime < hitCooldown) return;
 
         lastHitTime = Time.time;
