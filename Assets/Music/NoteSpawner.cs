@@ -105,7 +105,7 @@ namespace Ath.Beat.Gameplay
             float secondsUntilHit = (float)(hitDspTime - AudioSettings.dspTime);
             float playerZ = Camera.main.transform.position.z;
             float z = playerZ + secondsUntilHit * noteSpeed;
-            bloc.transform.position = new Vector3(x, y, z);
+            bloc.transform.position = new Vector3(x, y, -50);
             bloc.Init(type, hitDspTime, noteSpeed);
         }
     }
