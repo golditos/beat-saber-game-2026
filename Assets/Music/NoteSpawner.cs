@@ -102,11 +102,9 @@ namespace Ath.Beat.Gameplay
             if (bloc == null) return;
             float x = (lane - 1.5f) * laneWidth;
             float y = baseY + row * rowHeight;
-            float z = spawnPoint != null
-                ? spawnPoint.position.z
-                : Camera.main.transform.position.z + spawnDistance;
-            bloc.transform.position = new Vector3(x, y, z);
-            bloc.Init(type, hitDspTime, noteSpeed);
+            bloc.transform.position = new Vector3(x, y, 0f);
+            float playerZ = Camera.main.transform.position.z;
+            bloc.Init(type, hitDspTime, noteSpeed, hitZ: playerZ);
         }
     }
 }
