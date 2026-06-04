@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class ScoreUI : MonoBehaviour
 {
+    public static ScoreUI Instance { get; private set; }
+
     [Header("HUD Texts")]
     [SerializeField] private TextMeshProUGUI scoreText;
     [SerializeField] private TextMeshProUGUI comboText;
@@ -19,20 +21,51 @@ public class ScoreUI : MonoBehaviour
     [SerializeField] private float feedbackScaleAmount = 1.25f;
 
     private Coroutine feedbackCoroutine;
+    private Vector3 lastHitOriginalScale = Vector3.one;
+    private Vector3 pointsOriginalScale = Vector3.one;
+    
+    private void OnEnable()
+    {
+        Instance = this;
+    }
 
-    private Vector3 lastHitOriginalScale;
-    private Vector3 pointsOriginalScale;
-
+    private void OnDisable()
+    {
+        if (Instance == this)
+        {
+            Instance = null;
+        }
+    }
     private void Awake()
     {
+        Instance = this;
+
         if (lastHitText != null)
         {
             lastHitOriginalScale = lastHitText.transform.localScale;
+        }
+        else
+        {
+            Debug.LogError("ScoreUI: LastHitText NO está asignado.");
         }
 
         if (pointsText != null)
         {
             pointsOriginalScale = pointsText.transform.localScale;
+        }
+        else
+        {
+            Debug.LogError("ScoreUI: PointsText NO está asignado.");
+        }
+
+        if (scoreText == null)
+        {
+            Debug.LogError("ScoreUI: ScoreText NO está asignado.");
+        }
+
+        if (comboText == null)
+        {
+            Debug.LogError("ScoreUI: ComboText NO está asignado.");
         }
     }
 
@@ -70,6 +103,8 @@ public class ScoreUI : MonoBehaviour
 
     public void ShowHitFeedback(string message, int points, Vector3 worldPosition)
     {
+        Debug.Log("ScoreUI recibe feedback: " + message + " +" + points);
+
         Color feedbackColor = GetColorByMessage(message);
 
         ShowHUDFeedback(message, points, feedbackColor);
@@ -83,11 +118,19 @@ public class ScoreUI : MonoBehaviour
             lastHitText.text = message;
             lastHitText.color = color;
         }
+        else
+        {
+            Debug.LogError("No se puede mostrar el tipo de golpe porque LastHitText está vacío.");
+        }
 
         if (pointsText != null)
         {
             pointsText.text = "+" + points;
             pointsText.color = color;
+        }
+        else
+        {
+            Debug.LogError("No se pueden mostrar los puntos porque PointsText está vacío.");
         }
 
         if (feedbackCoroutine != null)
@@ -102,13 +145,11 @@ public class ScoreUI : MonoBehaviour
     {
         if (popupPrefab == null) return;
 
-        Transform parent = popupParent != null ? popupParent : null;
-
         HitFeedbackPopup popup = Instantiate(
             popupPrefab,
             worldPosition,
             Quaternion.identity,
-            parent
+            popupParent
         );
 
         popup.Setup(message, points, color);

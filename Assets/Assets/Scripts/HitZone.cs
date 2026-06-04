@@ -12,16 +12,26 @@ public class HitZone : MonoBehaviour
         {
             spiderHitReceiver = GetComponentInParent<SpiderHitReceiver>();
         }
+
+        if (spiderHitReceiver == null)
+        {
+            Debug.LogError("No se ha encontrado SpiderHitReceiver en el padre de " + gameObject.name);
+        }
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Algo ha tocado esta hitbox: " + other.name + " | Tag: " + other.tag);
+        Debug.Log("HITZONE TOCADA por: " + other.name + " | Tag: " + other.tag);
 
         if (!IsWeapon(other))
         {
-            Debug.Log("Ha tocado algo, pero NO es Weapon: " + other.name);
+            Debug.Log("No es Weapon: " + other.name);
             return;
+        }
+
+        if (spiderHitReceiver == null)
+        {
+            spiderHitReceiver = GetComponentInParent<SpiderHitReceiver>();
         }
 
         if (spiderHitReceiver == null)
